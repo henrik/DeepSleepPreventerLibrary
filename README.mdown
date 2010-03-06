@@ -2,9 +2,8 @@ DeepSleepPreventerLibrary
 =========================
 The purpose of DeepSleepPreventerLibrary is to give iPhone developers the possibilty, 
 to prevent the iPhone from going to deep sleep programmatically. The idea behind all 
-this is to play a silent sound file triggered by a repeating timer. Fot more information 
-please check [http://marcopeluso.com/2009/08/23/how-to-prevent-iphone-from-deep-sleeping/#more-172(this tutorial)].
-
+this is to play a silent sound file triggered by a repeating timer. For more information 
+please check [http://marcopeluso.com/2009/08/23/how-to-prevent-iphone-from-deep-sleeping/#more-172](this tutorial).
 
 Adding DeepSleepPreventerLibrary to your project
 ================================================
