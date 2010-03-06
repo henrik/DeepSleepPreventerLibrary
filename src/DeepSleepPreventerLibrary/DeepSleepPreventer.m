@@ -56,8 +56,7 @@
 		NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
 		
 		// Set up audio player with sound file
-		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
-																  error:nil];
+		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 		[fileURL release];
 		[self.audioPlayer prepareToPlay];
 		
@@ -132,16 +131,10 @@
 			NULL							// Data you intend to be passed to your interruption listener callback function when the audio session object invokes it.
 		);
 		
-		// Activate audio session
-		OSStatus activationResult = 0;
-		activationResult = AudioSessionSetActive(true);
-		
-		if (activationResult)
-			DLog(@"AudioSession is active");
-
 		// Set up audio session category to kAudioSessionCategory_MediaPlayback.
 		// While playing sounds using this session category at least every 10 seconds, the iPhone doesn't go to sleep.
-		UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;	// Defines a new variable of type UInt32 and initializes it with the identifier 
+		UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;	
+																		// Defines a new variable of type UInt32 and initializes it with the identifier 
 																		// for the category you want to apply to the audio session.
 		AudioSessionSetProperty (
 			kAudioSessionProperty_AudioCategory,						// The identifier, or key, for the audio session property you want to set.
@@ -166,18 +159,12 @@
 		if (propertySetError)
 			DLog(@"Error setting kAudioSessionProperty_OverrideCategoryMixWithOthers: %d", propertySetError);
 
-		// FIXXXME: This should be done, when 
-//		// Set up audio session output route overriding. 
-//		propertySetError = 0;
-//		UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-// 
-//		propertySetError =	AudioSessionSetProperty (
-//								kAudioSessionProperty_O,
-//								sizeof(doChangeDefaultRoute),
-//								&doChangeDefaultRoute
-//							);
-//		if (propertySetError)
-//			DLog(@"Error setting kAudioSessionProperty_OverrideCategoryMixWithOthers: %d", propertySetError);
+		// Activate audio session
+		OSStatus activationResult = 0;
+		activationResult = AudioSessionSetActive(true);
+		
+		if (activationResult)
+			DLog(@"AudioSession is active");
 }
 
 @end

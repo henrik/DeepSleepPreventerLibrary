@@ -8,7 +8,7 @@
 
 #import "iPhoneInsomniaAppDelegate.h"
 #import "iPhoneInsomniaViewController.h"
-#import "DeepSleepPreventer.h"
+#import <DeepSleepPreventerLibrary/DeepSleepPreventer.h>
 
 @implementation iPhoneInsomniaAppDelegate
 
