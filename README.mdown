@@ -1,0 +1,41 @@
+DeepSleepPreventerLibrary
+=========================
+The purpose of DeepSleepPreventerLibrary is to give iPhone developers the possibilty, 
+to prevent the iPhone from going to deep sleep programmatically. The idea behind all 
+this is to play a silent sound file triggered by a repeating timer. Fot more information 
+please check [http://marcopeluso.com/2009/08/23/how-to-prevent-iphone-from-deep-sleeping/#more-172(this tutorial)].
+
+
+Adding DeepSleepPreventerLibrary to your project
+================================================
+
+1. Clone the git repository: `git://github.com/rwbr/DeepSleepPreventerLibrary.git`. 
+   Please be careful while selecting the place of the repository on your disk. Because your Xcode
+   project needs to reference the files you have to expect problems, if you later move this repository.
+
+2. Open Finder and locate 'DeepSleepPreventerLibrary.xcodeproj'. Drag and drop this file into the root of
+   your Xcode project's sidebar ('Groups & Files'). Now s dialog opens. Check that 'Copy items' is unchecked.
+   'Reference type' must be 'Relative to Project'. Then click 'Add'.
+
+3. The next step is to link the DeepSleepPreventerLibrary static library to your project. Click the 
+   'DeepSleepPreventerLibrary.xcodeproj' item in the sidebar, that has been added in the last step.  
+   Under the "Details" table, you will see a libDeepSleepPreventerLibrary.a.  On the far right there is a checkbox.
+   Check this checkbox now.
+
+4. Expand the 'Targets' section of your project and select your application's target. Right-click it 
+   and select 'Get info'. On the 'General' tab you will see a section called 'Direct Dependencies'. Click on
+   the '+' button and add 'DeepSleepPreventerLibrary'.
+   
+5. Now go back to the Finder again and browse for a file called 'noSound.wav'. Add this file to your Xcode project. 
+   You can achive this by dragging it into your projects sidebar in Xcode. In the dialog window, that opens up now,
+   you must uncheck 'Copy items' and make sure 'Reference Type' is 'Relative to Project' before clicking 'Add'.
+
+6. Now add the AVFoundation, AudioToolbox and MediaPlayer frameworks to your project. 
+
+7. The last thing to to is, to tell Xcode, where it finds DeepSleepPreventerLibrary's heder files, when building your
+   project. Select your application's target again and right-click it. Select 'Get info' now. On the 'Build' tab look for
+   'Header Search Paths'. Be sure, that 'All conigurations' is selected before double-clicking the 'Header Search Paths'
+   section. Add the relative path from your project's directory to the 'src' directory. 
+   Now add to 'Other Linker Flags' under the 'Linker' section the options '-ObjC' and '-all_load'.
+
+8. That's all. Now you can do #import <DeepSleepPreventerLibrary/DeepSleepPreventer.h> into your code and use it.
