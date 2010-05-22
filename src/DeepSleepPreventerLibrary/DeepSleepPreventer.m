@@ -62,6 +62,7 @@
 
 - (void)startPreventSleep
 {
+  [self stopPreventSleep];
 	self.preventSleepTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0]
 													  interval:5.0
 														target:self
