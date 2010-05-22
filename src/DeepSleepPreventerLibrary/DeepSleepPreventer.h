@@ -19,9 +19,7 @@
 @property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 @property (nonatomic, retain) NSTimer *preventSleepTimer;
 
-- (void)playPreventSleepSound;	// FIXXXME: make this private
 - (void)startPreventSleep;
 - (void)stopPreventSleep;
-- (void)setUpAudioSession;		// FIXXXME: make this private
 
 @end

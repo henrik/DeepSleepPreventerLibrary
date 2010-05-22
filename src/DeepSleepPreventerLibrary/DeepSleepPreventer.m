@@ -10,6 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+@interface DeepSleepPreventer (Private)
+- (void)setUpAudioSession;
+- (void)playPreventSleepSound;
+@end
+
+
 @implementation DeepSleepPreventer
 
 @synthesize audioPlayer;
@@ -21,7 +27,7 @@
 
 - (id)init
 {
-    if ((self = [super init]))
+  if ((self = [super init]))
 	{
 		[self setUpAudioSession];
 		
@@ -39,7 +45,7 @@
 		// I don't know exactly, if this affects battery life, but it can't hurt.
 		[self.audioPlayer setVolume:0.0];
 	}
-    return self;
+  return self;
 }
 
 
@@ -57,13 +63,6 @@
 #pragma mark -
 #pragma mark Public Methods
 
-// FIXXXME: make this private
-- (void)playPreventSleepSound
-{
-	[self.audioPlayer play];
-}
-
-
 - (void)startPreventSleep
 {
 	// We need to play a sound at least every 10 seconds to keep the iPhone awake.
@@ -80,14 +79,16 @@
 	[runLoop addTimer:self.preventSleepTimer forMode:NSDefaultRunLoopMode];
 }
 
-
 - (void)stopPreventSleep
 {
 	[self.preventSleepTimer invalidate];
 	self.preventSleepTimer = nil;
 }
 
-// FIXXXME: make this private
+
+#pragma mark -
+#pragma mark Private
+
 - (void)setUpAudioSession
 {
 	// Initialize audio session
@@ -132,6 +133,11 @@
 		
 		if (activationResult)
 			DLog(@"AudioSession is active");
+}
+
+- (void)playPreventSleepSound
+{
+	[self.audioPlayer play];
 }
 
 @end
