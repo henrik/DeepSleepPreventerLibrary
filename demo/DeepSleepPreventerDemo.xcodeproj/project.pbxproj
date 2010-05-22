@@ -26,14 +26,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = B21B5C0B1142BED2007BE8C3 /* DeepSleepPreventerLibrary.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libDeepSleepPreventerLibrary.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = DeepSleepPreventerLibrary;
 		};
 		B21B5C191142BEFA007BE8C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B21B5C0B1142BED2007BE8C3 /* DeepSleepPreventerLibrary.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* DeepSleepPreventerLibrary */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = DeepSleepPreventerLibrary;
 		};
 /* End PBXContainerItemProxy section */

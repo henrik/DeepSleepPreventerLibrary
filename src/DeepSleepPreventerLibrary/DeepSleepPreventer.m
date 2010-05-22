@@ -6,43 +6,18 @@
 //  Copyright 2009 Marco Peluso. All rights reserved.
 //
 
-//===============================================
-#pragma mark -
-#pragma mark Import
-//===============================================
-
 #import "DeepSleepPreventer.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-
-
-
-//===============================================
-#pragma mark -
-#pragma mark Implementation
-//===============================================
-
 @implementation DeepSleepPreventer
-
-
-
-
-//===============================================
-#pragma mark -
-#pragma mark Synthesize
-//===============================================
 
 @synthesize audioPlayer;
 @synthesize preventSleepTimer;
 
 
-
-
-//===============================================
 #pragma mark -
 #pragma mark Inits and DidLoads
-//===============================================
 
 - (id)init
 {
@@ -68,12 +43,8 @@
 }
 
 
-
-
-//===============================================
 #pragma mark -
 #pragma mark Dealloc and UnLoads
-//===============================================
 
 - (void)dealloc
 {
@@ -83,12 +54,8 @@
 }
 
 
-
-
-//===============================================
 #pragma mark -
 #pragma mark Public Methods
-//===============================================
 
 // FIXXXME: make this private
 - (void)playPreventSleepSound
