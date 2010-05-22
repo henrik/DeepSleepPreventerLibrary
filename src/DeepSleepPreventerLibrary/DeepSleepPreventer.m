@@ -31,18 +31,15 @@
 	{
 		[self setUpAudioSession];
 		
-		// Set up path to sound file
-		NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"noSound"
-																  ofType:@"wav"];
+		NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"noSound" ofType:@"wav"];
 		NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
 		
-		// Set up audio player with sound file
 		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 		[fileURL release];
 		[self.audioPlayer prepareToPlay];
 		
 		// You may want to set this to 0.0 even if your sound file is silent.
-		// I don't know exactly, if this affects battery life, but it can't hurt.
+		// I don't know if this affects battery life, but it can't hurt.
 		[self.audioPlayer setVolume:0.0];
 	}
   return self;
@@ -65,16 +62,13 @@
 
 - (void)startPreventSleep
 {
-	// We need to play a sound at least every 10 seconds to keep the iPhone awake.
-	// We create a new repeating timer, that begins firing now and then every ten seconds.
-	// Every time it fires, it calls -playPreventSleepSound
 	self.preventSleepTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0]
 													  interval:5.0
 														target:self
 													  selector:@selector(playPreventSleepSound)
 													  userInfo:nil
 													   repeats:YES];
-	// We add this timer to the current run loop
+
 	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
 	[runLoop addTimer:self.preventSleepTimer forMode:NSDefaultRunLoopMode];
 }
@@ -100,15 +94,9 @@
 		);
 		
 		// Set up audio session category to kAudioSessionCategory_MediaPlayback.
-		// While playing sounds using this session category at least every 10 seconds, the iPhone doesn't go to sleep.
+    // We need that specific category: http://developer.apple.com/iphone/library/qa/qa2008/qa1626.html
 		UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;	
-																		// Defines a new variable of type UInt32 and initializes it with the identifier 
-																		// for the category you want to apply to the audio session.
-		AudioSessionSetProperty (
-			kAudioSessionProperty_AudioCategory,						// The identifier, or key, for the audio session property you want to set.
-			sizeof(sessionCategory),									// The size, in bytes, of the property value that you are applying.
-			&sessionCategory											// The category you want to apply to the audio session.
-		);
+    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
 		
 		// Set up audio session playback mixing behavior.
 		// kAudioSessionCategory_MediaPlayback usually prevents playback mixing, so we allow it here. This way, we don't get in the way of other sound playback in an application.
@@ -118,11 +106,7 @@
 		OSStatus propertySetError = 0;
 		UInt32 allowMixing = true;
  
-		propertySetError =	AudioSessionSetProperty (
-								kAudioSessionProperty_OverrideCategoryMixWithOthers,	// The identifier, or key, for the audio session property you want to set.
-								sizeof(allowMixing),									// The size, in bytes, of the property value that you are applying.
-								&allowMixing											// The value to apply to the property.
-							);
+    propertySetError = AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers, sizeof(allowMixing), &allowMixing);
 		
 		if (propertySetError)
 			DLog(@"Error setting kAudioSessionProperty_OverrideCategoryMixWithOthers: %d", propertySetError);
