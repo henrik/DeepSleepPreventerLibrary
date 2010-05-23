@@ -6,10 +6,12 @@
 //  Copyright 2009 Marco Peluso. All rights reserved.
 //
 
-#ifdef DEBUG
-#define DLog(...) NSLog(__VA_ARGS__)
-#else
-#define DLog(...) /* */
+#ifndef DLog
+  #ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__)
+  #else
+    #define DLog(...) /* */
+  #endif
 #endif
 
 #import <Foundation/Foundation.h>
